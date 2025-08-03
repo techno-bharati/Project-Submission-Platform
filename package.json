@@ -14,12 +14,19 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@prisma/client": "^6.13.0",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-switch": "^1.2.5",
+    "@tanstack/react-query": "^5.84.1",
     "better-auth": "^1.3.4",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "husky": "^9.1.7",
     "lucide-react": "^0.536.0",
     "motion": "^12.23.12",
@@ -29,7 +36,11 @@
     "prisma": "^6.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "tailwind-merge": "^3.3.1"
+    "react-hook-form": "^7.62.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.3.1",
+    "vaul": "^1.1.2",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

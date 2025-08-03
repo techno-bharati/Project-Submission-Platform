@@ -16,13 +16,13 @@ const LoginPage = () => {
   const handleSignInwithGoogle = async () => {
     await signIn.social({
       provider: "google",
-      callbackURL: "/submit"
+      callbackURL: "/user"
     });
   };
   const handleSignInwithGitHub = async () => {
     await signIn.social({
       provider: "github",
-      callbackURL: "/submit"
+      callbackURL: "/user"
     });
   };
 

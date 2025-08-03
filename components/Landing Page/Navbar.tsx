@@ -55,9 +55,9 @@ const Navbar = () => {
               "https://github.com/techno-bharati/Project-Submission-Platform"
             }
             target="_blank"
-            className="p-1 rounded-md hover:bg-muted-foreground/20"
+            className="p-2 rounded-md hover:bg-muted-foreground/20"
           >
-            <GitHub />
+            <GitHub className="h-4 w-4" />
           </Link>
         </div>
       </div>

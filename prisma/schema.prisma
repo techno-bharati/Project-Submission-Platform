@@ -18,8 +18,9 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  Admin Admin?
-  role  Role   @default(USER)
+  Admin    Admin?
+  role     Role       @default(USER)
+  Projects Projects[]
 
   @@unique([email])
   @@map("user")
@@ -88,14 +89,18 @@ model Projects {
 
   title              String
   description        String
-  domain             String
+  domain             String[]
   teamMembers        String[]
   pptUrl             String
   githubUrl          String
+  liveLink           String?
   synopsis           String
   projectThumbnail   String
   verificationStatus ProjectVerificationStatus @default(PENDING)
   technologies       String[]
+  userId             String
+
+  user User @relation(fields: [userId], references: [id])
 }
 
 enum Role {
@@ -106,4 +111,23 @@ enum Role {
 enum ProjectVerificationStatus {
   PENDING
   VERIFIED
+  REJECTED
+}
+
+enum ProjectDomains {
+  WebDevelopment
+  MobileAppDevelopment
+  MachineLearning
+  ArtificialIntelligence
+  DataScience
+  CyberSecurity
+  InternetOfThings
+  Blockchain
+  Robotics
+  EmbeddedSystems
+  ComputerVision
+  FinTech
+  EdTech
+  HealthTech
+  Others
 }

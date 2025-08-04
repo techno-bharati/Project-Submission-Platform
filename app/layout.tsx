@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import AppProvider from "@/components/Providers/AppProvider";
+import { ViewTransitions } from "next-view-transitions";
 
 const manrope = Manrope({
   subsets: ["latin"]
@@ -18,10 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${manrope.className} antialiased`}>
-        <AppProvider>{children}</AppProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={`${manrope.className} antialiased`}>
+          <AppProvider>{children}</AppProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

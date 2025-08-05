@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "next-view-transitions";
 import React from "react";
 import ThemeToggle from "../ThemeToggle";
 import { motion } from "motion/react";
@@ -9,11 +10,11 @@ import { GitHub } from "@/lib/icons";
 const Navlinks = [
   {
     label: "Projects",
-    href: "/projects"
+    href: "/user/my-projects"
   },
   {
     label: "Submit",
-    href: "/submit"
+    href: "/user/submit"
   }
 ];
 

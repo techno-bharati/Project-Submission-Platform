@@ -11,12 +11,8 @@ export const submitProjectSchema = z.object({
   domain: z
     .array(z.string())
     .min(1, { message: "Please select at least one domain." }),
-  teamMembers: z
-    .array(z.string().min(1))
-    .min(1, { message: "Add at least one team member." }),
-  pptUrl: z.string().url({ message: "PPT URL must be a valid URL." }),
+  zip: z.string(),
   githubUrl: z.string().url({ message: "GitHub URL must be a valid URL." }),
-  synopsis: z.string().url({ message: "Synopsis must be a valid URL." }),
   projectThumbnail: z
     .string()
     .url({ message: "Thumbnail must be a valid image URL." }),

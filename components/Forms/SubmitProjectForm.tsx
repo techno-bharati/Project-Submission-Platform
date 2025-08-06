@@ -14,10 +14,7 @@ export const useFormSubmitProject = () =>
       domain: [],
       githubUrl: "",
       liveLink: "",
-      pptUrl: "",
       projectThumbnail: "",
-      synopsis: "",
-      teamMembers: [],
       technologies: []
     }
   });

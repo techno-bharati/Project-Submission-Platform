@@ -19,14 +19,13 @@ import { Textarea } from "@/components/ui/textarea";
 import MultipleSelector from "@/components/ui/multiple-select";
 import { ProjectDomainOptions, Technologies } from "@/lib/constants";
 import { ImageUpload } from "@/components/ImageUpload";
-import { PPTUpload } from "@/components/PptUpload";
-import { PDFUpload } from "@/components/PDFUpload";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import SubmitProject from "@/actions/submitProject";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ZipUpload } from "@/components/UploadZip";
 
 const UserProjectSubmitPage = () => {
   const form = useFormSubmitProject();
@@ -55,8 +54,9 @@ const UserProjectSubmitPage = () => {
   const { watch, setValue } = form;
 
   const thumbnail = watch("projectThumbnail");
-  const pptUrl = watch("pptUrl");
-  const pdfUrl = watch("synopsis");
+  const zipUrl = watch("zip");
+
+  console.log("FORM ERROR::::", form.formState.errors);
 
   return (
     <section className="max-w-4xl mx-auto py-2">
@@ -131,34 +131,7 @@ const UserProjectSubmitPage = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="domain"
-            render={() => (
-              <FormItem>
-                <FormLabel>Team Members</FormLabel>
-                <FormControl>
-                  <MultipleSelector
-                    placeholder="Team Members"
-                    disabled={isSubmitProjectPending}
-                    creatable
-                    emptyIndicator={
-                      <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
-                        Enter Team Member Names
-                      </p>
-                    }
-                    onChange={(values) => {
-                      setValue(
-                        "teamMembers",
-                        Array.isArray(values) ? values.map((v) => v.value) : []
-                      );
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <FormField
             control={form.control}
             name="technologies"
@@ -230,21 +203,20 @@ const UserProjectSubmitPage = () => {
                 setValue("projectThumbnail", public_id);
               }}
             />
-            <PPTUpload
-              fileUrl={pptUrl}
+            <ZipUpload
+              fileUrl={zipUrl}
               setValue={(public_id) => {
-                setValue("pptUrl", public_id);
-              }}
-            />
-            <PDFUpload
-              fileUrl={pdfUrl}
-              setValue={(public_id) => {
-                setValue("synopsis", public_id);
+                setValue("zip", public_id);
               }}
             />
           </div>
 
-          <Button variant={"outline"} className="self-end w-full md:w-fit">
+          <Button
+            type="submit"
+            disabled={isSubmitProjectPending}
+            variant={"outline"}
+            className="self-end w-full md:w-fit"
+          >
             {isSubmitProjectPending && <Loader2 className="animate-spin" />}
             Submit
           </Button>

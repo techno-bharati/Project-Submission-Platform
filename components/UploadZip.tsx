@@ -3,19 +3,18 @@
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import Image from "next/image";
-import { UploadCloud } from "lucide-react";
 import { Label } from "./ui/label";
+import { UploadCloud } from "lucide-react";
 import { uploadFile } from "@/utils/uploadFile";
 
-export const ImageUpload = ({
-  imageUrl,
+export const ZipUpload = ({
+  fileUrl,
   setValue
 }: {
-  imageUrl?: string | null;
+  fileUrl?: string | null;
   setValue: (url: string) => void;
 }) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -23,8 +22,12 @@ export const ImageUpload = ({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const localPreview = URL.createObjectURL(file);
-    setPreviewUrl(localPreview);
+    if (!file.name.endsWith(".zip")) {
+      alert("Please upload a .zip file");
+      return;
+    }
+
+    setSelectedFileName(file.name);
     setLoading(true);
 
     try {
@@ -41,20 +44,17 @@ export const ImageUpload = ({
   };
 
   return (
-    <div className="">
+    <div>
       <Label className="self-start mb-2">
-        Image <span className="text-xs text-muted-foreground">(Optional)</span>
+        Project Zip File{" "}
+        <span className="text-xs text-muted-foreground">(Required)</span>
       </Label>
 
-      {imageUrl || previewUrl ? (
+      {fileUrl || selectedFileName ? (
         <div className="flex flex-col items-start gap-2">
-          <Image
-            src={previewUrl || imageUrl!}
-            alt="Uploaded image"
-            width={200}
-            height={200}
-            className="rounded-xl border shadow object-cover"
-          />
+          <p className="text-sm font-medium">
+            {selectedFileName || fileUrl?.split("/").pop()}
+          </p>
           <Button
             type="button"
             variant="secondary"
@@ -62,7 +62,7 @@ export const ImageUpload = ({
             onClick={() => inputRef.current?.click()}
             disabled={loading}
           >
-            Change Image
+            Change File
           </Button>
         </div>
       ) : (
@@ -74,7 +74,7 @@ export const ImageUpload = ({
           className="gap-2 w-full border-dashed"
         >
           <UploadCloud />
-          Upload Thumbnail
+          {loading ? "Uploading..." : "Upload Zip File"}
         </Button>
       )}
 
@@ -83,7 +83,7 @@ export const ImageUpload = ({
         className="hidden"
         ref={inputRef}
         onChange={handleFileChange}
-        accept="image/*"
+        accept=".zip"
       />
     </div>
   );

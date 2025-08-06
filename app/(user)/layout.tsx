@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { BookOpen, FilePlus, FileText, LucideIcon, Menu } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import ThemeToggle from "@/components/ThemeToggle";
+import UserAccount from "@/components/UserAccount";
 
 interface SidebarItem {
   href: string;
@@ -50,8 +51,6 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <div className="space-y-4 md:space-y-6 relative z-20 flex flex-col h-full">
-      <div className="hidden md:flex items-center">LOGO</div>
-
       <div className="flex-grow">
         <ul>
           {SIDEBAR_ITEMS.map(({ category, items }) => (
@@ -89,7 +88,7 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => {
           <ThemeToggle />
         </div>
         <hr className="my-4 md:my-6 w-full h-px" />
-        USER ACCOUNT
+        <UserAccount user={session?.user} />
       </div>
     </div>
   );

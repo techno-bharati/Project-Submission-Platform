@@ -1,11 +1,15 @@
 "use client";
 
-// import Link from "next/link";
 import { Link } from "next-view-transitions";
 import React from "react";
 import ThemeToggle from "../ThemeToggle";
 import { motion } from "motion/react";
 import { GitHub } from "@/lib/icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 const Navlinks = [
   {
@@ -51,15 +55,22 @@ const Navbar = () => {
         </div>
         <div className="flex gap-2 items-center">
           <ThemeToggle />
-          <Link
-            href={
-              "https://github.com/techno-bharati/Project-Submission-Platform"
-            }
-            target="_blank"
-            className="p-2 rounded-md hover:bg-muted-foreground/20"
-          >
-            <GitHub className="h-4 w-4" />
-          </Link>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href={
+                  "https://github.com/techno-bharati/Project-Submission-Platform"
+                }
+                target="_blank"
+                className="p-2 hover:bg-muted-foreground/10 rounded-sm"
+              >
+                <GitHub className="h-5 w-5" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="text-xs">Proudly Open Source</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
     </nav>

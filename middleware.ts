@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
       }
     );
     if (!session || session.user.role !== "admin") {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/not-admin", request.url));
     }
   }
 

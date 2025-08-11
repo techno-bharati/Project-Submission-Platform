@@ -16,8 +16,15 @@ import {
 import { LogOut, Settings, UserCircle } from "lucide-react";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { Badge } from "./ui/badge";
 
-const UserAccount = ({ user }: { user: User | undefined }) => {
+const UserAccount = ({
+  user,
+  isAdmin
+}: {
+  user: User | undefined;
+  isAdmin?: boolean;
+}) => {
   const router = useRouter();
 
   if (!user) {
@@ -29,8 +36,11 @@ const UserAccount = ({ user }: { user: User | undefined }) => {
       <DropdownMenuTrigger asChild>
         <div className="w-full p-2 rounded-sm flex hover:bg-muted-foreground/5 cursor-pointer select-none border">
           <UserAvatar user={user} />
-          <div className="flex flex-col ml-2">
-            <p className="text-sm truncate">{user.name}</p>
+          <div className="flex flex-col ml-2 w-full">
+            <div className="text-sm flex w-full justify-between">
+              <p className="truncate">{user.name}</p>
+              {isAdmin && <Badge variant={"secondary"}>Admin</Badge>}
+            </div>
             <p className="text-xs text-muted-foreground truncate">
               {user.email}
             </p>
@@ -46,7 +56,10 @@ const UserAccount = ({ user }: { user: User | undefined }) => {
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">{user.name}</span>
+              <div className="font-medium w-full flex justify-between">
+                <span className="truncate">{user.name}</span>
+                {isAdmin && <Badge variant={"secondary"}>Admin</Badge>}
+              </div>
               <span className="text-muted-foreground truncate text-xs">
                 {user.email}
               </span>

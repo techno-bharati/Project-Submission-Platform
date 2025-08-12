@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { BookOpen, FilePlus, FileText, LucideIcon, Menu } from "lucide-react";
+import { BarChart2, FilePlus, FileText, LucideIcon, Menu } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import { Link } from "next-view-transitions";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ const SIDEBAR_ITEMS: SidebarCategory[] = [
     items: [
       { href: "/user/my-projects", icon: FileText, text: "My Projects" },
       { href: "/user/submit", icon: FilePlus, text: "Submit Project" },
-      { href: "/user/articles", icon: BookOpen, text: "Articles" }
+      { href: "/user/analytics", icon: BarChart2, text: "Analytics" }
     ]
   }
 ];

@@ -2,6 +2,7 @@ import { ProjectVerificationStatus } from "@prisma/client";
 import { CheckCircle, XCircle, Clock } from "lucide-react";
 import React from "react";
 import clsx from "clsx";
+import { Badge } from "@/components/ui/badge";
 
 const statusConfig = {
   PENDING: {
@@ -30,15 +31,15 @@ const ProjectStatusIndicator = ({
   const Icon = config.icon;
 
   return (
-    <div
+    <Badge
       className={clsx(
-        "inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium",
+        "inline-flex items-center gap-2 rounded-full text-sm font-medium",
         config.color
       )}
     >
       <Icon className="w-4 h-4" />
       {config.label}
-    </div>
+    </Badge>
   );
 };
 

@@ -20,8 +20,8 @@ model User {
 
   Projects Projects[]
 
-  role       String   @default("user")
-  banned     Boolean  @default(false)
+  role       String    @default("user")
+  banned     Boolean   @default(false)
   banReason  String?
   banExpires DateTime?
 
@@ -77,7 +77,6 @@ model Verification {
 }
 
 // App Logic
-
 model Projects {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -86,14 +85,12 @@ model Projects {
   title              String
   description        String
   domain             String[]
-  teamMembers        String[]
-  pptUrl             String
   githubUrl          String
   liveLink           String?
-  synopsis           String
   projectThumbnail   String
   verificationStatus ProjectVerificationStatus @default(PENDING)
   technologies       String[]
+  zip                String
   userId             String
 
   user User @relation(fields: [userId], references: [id])
